@@ -5,21 +5,18 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "order_details", schema = "public", catalog = "LeCommerce")
-public class OrderDetails {
+@Table(name = "product_category", schema = "public", catalog = "LeCommerce")
+public class ProductCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private int id;
     
-    @Column(name = "order_id")
-    private int orderId;
-    
     @Column(name = "product_id")
     private int productId;
     
-    @Column(name = "quantity")
-    private int quantity;
+    @Column(name = "category_id")
+    private int categoryId;
 
     public int getId() {
         return id;
@@ -27,14 +24,6 @@ public class OrderDetails {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
     }
 
     public int getProductId() {
@@ -45,24 +34,24 @@ public class OrderDetails {
         this.productId = productId;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OrderDetails that = (OrderDetails) o;
-        return id == that.id && orderId == that.orderId && productId == that.productId && quantity == that.quantity;
+        ProductCategory that = (ProductCategory) o;
+        return id == that.id && productId == that.productId && categoryId == that.categoryId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderId, productId, quantity);
+        return Objects.hash(id, productId, categoryId);
     }
 }

@@ -1,9 +1,9 @@
 package com.fishingstore.ecommerce.repository;
 
-import com.fishingstore.ecommerce.model.Order;
+import com.fishingstore.ecommerce.model.Authentication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Integer> {
+public interface AuthenticationRepository extends JpaRepository<Authentication, Integer> {
 }

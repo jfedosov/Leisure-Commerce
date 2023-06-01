@@ -5,15 +5,15 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "order_details", schema = "public", catalog = "LeCommerce")
-public class OrderDetails {
+@Table(name = "warehouse_product", schema = "public", catalog = "LeCommerce")
+public class WarehouseProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private int id;
     
-    @Column(name = "order_id")
-    private int orderId;
+    @Column(name = "warehouse_id")
+    private int warehouseId;
     
     @Column(name = "product_id")
     private int productId;
@@ -29,12 +29,12 @@ public class OrderDetails {
         this.id = id;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public int getWarehouseId() {
+        return warehouseId;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setWarehouseId(int warehouseId) {
+        this.warehouseId = warehouseId;
     }
 
     public int getProductId() {
@@ -57,12 +57,12 @@ public class OrderDetails {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OrderDetails that = (OrderDetails) o;
-        return id == that.id && orderId == that.orderId && productId == that.productId && quantity == that.quantity;
+        WarehouseProduct that = (WarehouseProduct) o;
+        return id == that.id && warehouseId == that.warehouseId && productId == that.productId && quantity == that.quantity;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderId, productId, quantity);
+        return Objects.hash(id, warehouseId, productId, quantity);
     }
 }

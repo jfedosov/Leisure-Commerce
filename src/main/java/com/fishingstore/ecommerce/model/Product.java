@@ -1,58 +1,100 @@
 package com.fishingstore.ecommerce.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Objects;
 
 @Entity
 public class Product {
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String name;
-    private String description;
-    private Double price;
-    private Integer stock;
+    @Column(name = "id")
+    private int id;
 
-    public Long getId() {
+    @Column(name = "product_name")
+    private String productName;
+
+    @Column(name = "product_description")
+    private String productDescription;
+
+    @Column(name = "product_price")
+    private Integer productPrice;
+
+    @Column(name = "product_image")
+    private String productImage;
+
+    @Column(name = "category_id")
+    private int categoryId;
+
+    @Column(name = "manufacturer_id")
+    private int manufacturerId;
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getProductDescription() {
+        return productDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 
-    public Double getPrice() {
-        return price;
+    public Integer getProductPrice() {
+        return productPrice;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setProductPrice(Integer productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public Integer getStock() {
-        return stock;
+    public String getProductImage() {
+        return productImage;
     }
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public int getManufacturerId() {
+        return manufacturerId;
+    }
+
+    public void setManufacturerId(int manufacturerId) {
+        this.manufacturerId = manufacturerId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id && categoryId == product.categoryId && manufacturerId == product.manufacturerId && Objects.equals(productName, product.productName) && Objects.equals(productDescription, product.productDescription) && Objects.equals(productPrice, product.productPrice) && Objects.equals(productImage, product.productImage);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, productName, productDescription, productPrice, productImage, categoryId, manufacturerId);
     }
 }
