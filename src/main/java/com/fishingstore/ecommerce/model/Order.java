@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
+@Table(name ="order", schema = "public", catalog = "LeCommerce")
 public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

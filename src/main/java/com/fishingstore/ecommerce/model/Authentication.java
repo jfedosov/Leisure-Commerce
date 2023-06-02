@@ -20,6 +20,7 @@ public class Authentication {
     @Column(name = "password")
     private String password;
 
+
     public int getId() {
         return id;
     }

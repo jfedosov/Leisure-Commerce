@@ -23,11 +23,12 @@ public class Product {
     @Column(name = "product_image")
     private String productImage;
 
-    @Column(name = "category_id")
-    private int categoryId;
-
     @Column(name = "manufacturer_id")
     private int manufacturerId;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category categoryId;
 
     public int getId() {
         return id;
@@ -69,20 +70,20 @@ public class Product {
         this.productImage = productImage;
     }
 
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
-
     public int getManufacturerId() {
         return manufacturerId;
     }
 
     public void setManufacturerId(int manufacturerId) {
         this.manufacturerId = manufacturerId;
+    }
+
+    public Category getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Category categoryId) {
+        this.categoryId = categoryId;
     }
 
     @Override

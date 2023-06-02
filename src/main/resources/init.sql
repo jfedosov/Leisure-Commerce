@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS public.customer
     id serial NOT NULL,
     first_name character varying(20) NOT NULL,
     last_name character varying(20) NOT NULL,
-    customer_type_id serial NOT NULL,
+    customer_type_id integer NOT NULL,
     email character varying(30) NOT NULL,
     CONSTRAINT user_id PRIMARY KEY (id),
     CONSTRAINT email UNIQUE (email)
@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS public.product
     product_description character varying(255),
     product_price integer,
     product_image character varying(100),
-    category_id serial,
-    manufacturer_id serial,
+    category_id integer,
+    manufacturer_id integer,
     CONSTRAINT product_id PRIMARY KEY (id)
 );
 
@@ -47,22 +47,22 @@ CREATE TABLE IF NOT EXISTS public.manufacturer
     CONSTRAINT manufacturer_id PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public."order"
+CREATE TABLE IF NOT EXISTS public.order
 (
     id serial NOT NULL,
-    customer_id serial NOT NULL,
+    customer_id integer NOT NULL,
     order_date date NOT NULL,
     total_price integer NOT NULL,
-    shipping_address_id serial NOT NULL,
-    order_status_id serial NOT NULL,
+    shipping_address_id integer NOT NULL,
+    order_status_id integer NOT NULL,
     CONSTRAINT order_id PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.order_details
 (
     id serial NOT NULL,
-    order_id serial NOT NULL,
-    product_id serial NOT NULL,
+    order_id integer NOT NULL,
+    product_id integer NOT NULL,
     quantity integer NOT NULL,
     CONSTRAINT order_details_id PRIMARY KEY (id)
 );
@@ -78,8 +78,8 @@ CREATE TABLE IF NOT EXISTS public.warehouse
 CREATE TABLE IF NOT EXISTS public.warehouse_product
 (
     id serial NOT NULL,
-    warehouse_id serial NOT NULL,
-    product_id serial NOT NULL,
+    warehouse_id integer NOT NULL,
+    product_id integer NOT NULL,
     quantity integer NOT NULL DEFAULT 0,
     CONSTRAINT warehouse_product_id PRIMARY KEY (id)
 );
@@ -87,15 +87,15 @@ CREATE TABLE IF NOT EXISTS public.warehouse_product
 CREATE TABLE IF NOT EXISTS public.product_category
 (
     id serial NOT NULL,
-    product_id serial NOT NULL,
-    category_id serial NOT NULL,
+    product_id integer NOT NULL,
+    category_id integer NOT NULL,
     CONSTRAINT product_category_id PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.shipping_address
 (
     id serial NOT NULL,
-    customer_id serial NOT NULL,
+    customer_id integer NOT NULL,
     street character varying,
     city character varying NOT NULL,
     zip_code character varying NOT NULL,
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS public.order_status
 CREATE TABLE IF NOT EXISTS public.authentication
 (
     id serial NOT NULL,
-    customer_id serial NOT NULL,
+    customer_id integer NOT NULL,
     email character varying(30) NOT NULL,
     password character varying(30) NOT NULL,
     CONSTRAINT authentication_id PRIMARY KEY (id),
