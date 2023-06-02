@@ -17,23 +17,32 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    public Product createProduct(Product product) {
+        return productRepository.save(product);
+    }
+
+    public Product getProductById(int id) {
+        return productRepository.findById(id).orElse(null);
+    }
+
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    public Product getProductById(Long id) {
-        return productRepository.findById(id).orElse(null);
-    }
-
-    public Product addProduct(Product product) {
-        return productRepository.save(product);
-    }
-
     public Product updateProduct(Product product) {
-        return productRepository.save(product);
+        Product existingProduct = productRepository.findById(product.getId()).orElse(null);
+
+        existingProduct.setProductName(product.getProductName());
+        existingProduct.setProductDescription(product.getProductDescription());
+        existingProduct.setProductPrice(product.getProductPrice());
+        existingProduct.setProductImage(product.getProductImage());
+        existingProduct.setCategoryId(product.getCategoryId());
+        existingProduct.setManufacturerId(product.getManufacturerId());
+
+        return productRepository.save(existingProduct);
     }
 
-    public void deleteProduct(Long id) {
+    public void deleteProduct(int id) {
         productRepository.deleteById(id);
     }
 }
